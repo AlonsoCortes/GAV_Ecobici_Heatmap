@@ -59,15 +59,6 @@ var baseMaps = {
 "Carto light": light,
 }
 
-//Agregar controlador al mapa
-L.control.layers(baseMaps, overlays).addTo(map);
-//Agregar escala metrica
-L.control.scale().addTo(map);
-
-Date.prototype.format = function (mask, utc) {
-    return dateFormat(this, mask, utc);
-};
-
 //Variable para capa de la ubicación de cada de amigos
 var estaciones = L.geoJson(null, { 
 	onEachFeature: function( feature, layer ){
@@ -82,6 +73,16 @@ var overlays = {
     "Estaciones": estaciones,
     };
 
+	  
+//Agregar controlador al mapa
+L.control.layers(baseMaps, overlays).addTo(map);
+//Agregar escala metrica
+L.control.scale().addTo(map);
+
+Date.prototype.format = function (mask, utc) {
+    return dateFormat(this, mask, utc);
+};
+	  
 // Attibution: SODA API requests based on this example: https://github.com/chriswhong/soda-leaflet
 L.TimeDimension.Layer.SODAHeatMap = L.TimeDimension.Layer.extend({
 
