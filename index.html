@@ -68,7 +68,14 @@ Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
 
-
+//Variable para capa de la ubicación de cada de amigos
+var estaciones = L.geoJson(null, { 
+	onEachFeature: function( feature, layer ){
+		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong>")}
+		});
+//Cargar el GeoJSON a las variables	    
+$.getJSON("Data/estaciones_ecobici_join.geojson", function (data) {
+	cdmx.addData(data)});	  
 
 // Attibution: SODA API requests based on this example: https://github.com/chriswhong/soda-leaflet
 L.TimeDimension.Layer.SODAHeatMap = L.TimeDimension.Layer.extend({
