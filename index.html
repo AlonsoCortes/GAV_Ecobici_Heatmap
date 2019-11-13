@@ -75,7 +75,7 @@ var estaciones = L.geoJson(null, {
 		});
 //Cargar el GeoJSON a las variables	    
 $.getJSON("Data/estaciones_ecobici_join.geojson", function (data) {
-	cdmx.addData(data)});
+	estaciones.addData(data)});
 	  
 //Agrupar Overlay layers
 var overlays = {
