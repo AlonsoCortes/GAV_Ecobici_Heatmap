@@ -98,7 +98,7 @@ Date.prototype.format = function (mask, utc) {
   $.getJSON("Data/septiembre.geojson",function(data){
     var locations = data.features.map(function(septiembre) {
       // the heatmap plugin wants an array of each location
-      var location = septiembre.geometry.coordinates.reverse();
+      var location = septiembre.geometry.coordinates;
       location.push(0.5);
       return location; // e.g. [50.5, 30.5, 0.2], // lat, lng, intensity
     });
