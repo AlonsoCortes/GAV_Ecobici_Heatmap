@@ -60,13 +60,25 @@ var baseMaps = {
 }
 
 //Variable para capa de la ubicación de cada de amigos
-var estaciones = L.geoJson(null, { 
+var estaciones =L.geoJson(null, {
+	pointToLayer: estiloIcon,
 	onEachFeature: function( feature, layer ){
-		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong>")}
-		});
+		layer.bindPopup( "<strong>" + feature.properties.name + "</strong><br/>" )}
+	});
 //Cargar el GeoJSON a las variables	    
 $.getJSON("Data/estaciones_ecobici_join.geojson", function (data) {
 	estaciones.addData(data)});
+
+var estacion_style = L.icon({
+	iconUrl: 'Icon/circle.png',
+	iconSize: [22.5, 22.5],
+});
+	  
+function estiloIcon(feature, latlng) {
+	return L.marker(latlng, {
+		icon: estacion_style
+	})
+};	  
 	  
 //Agrupar Overlay layers
 var overlays = {
