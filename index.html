@@ -95,6 +95,18 @@ Date.prototype.format = function (mask, utc) {
     return dateFormat(this, mask, utc);
 };
 	  
+  $.getJSON("Data/septiembre.geojson",function(data){
+    var locations = data.features.map(function(septiembre) {
+      // the heatmap plugin wants an array of each location
+      var location = septiembre.geometry.coordinates.reverse();
+      location.push(0.5);
+      return location; // e.g. [50.5, 30.5, 0.2], // lat, lng, intensity
+    });
+
+    var heat = L.heatLayer(locations, { radius: 35 });
+    map.addLayer(heat);
+  });	  
+	  
 // Attibution: SODA API requests based on this example: https://github.com/chriswhong/soda-leaflet
 L.TimeDimension.Layer.SODAHeatMap = L.TimeDimension.Layer.extend({
 
